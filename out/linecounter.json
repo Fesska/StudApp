@@ -1,0 +1,380 @@
+{
+    "extension": "linecounter",
+    "version": "0.2.7",
+    "workspace": "e:\\WebProjects\\studapp_prot_v2",
+    "linecount": [
+        {
+            "version": "0.2.7",
+            "counttime": "2022-06-13 20:31:46",
+            "filesum": 53,
+            "codesum": 32712,
+            "commentsum": 39,
+            "blanksum": 248,
+            "statistics": {
+                ".json": {
+                    "code": 30815,
+                    "comment": 0,
+                    "blank": 5
+                },
+                ".js": {
+                    "code": 1830,
+                    "comment": 10,
+                    "blank": 223
+                },
+                ".md": {
+                    "code": 21,
+                    "comment": 4,
+                    "blank": 15
+                },
+                ".txt": {
+                    "code": 3,
+                    "comment": 1,
+                    "blank": 0
+                },
+                "": {
+                    "code": 18,
+                    "comment": 1,
+                    "blank": 5
+                },
+                ".html": {
+                    "code": 20,
+                    "comment": 23,
+                    "blank": 0
+                },
+                ".svg": {
+                    "code": 5,
+                    "comment": 0,
+                    "blank": 0
+                }
+            },
+            "filelist": [
+                {
+                    "blank": 5,
+                    "code": 18,
+                    "comment": 1,
+                    "filename": ".gitignore"
+                },
+                {
+                    "blank": 2,
+                    "code": 30742,
+                    "comment": 0,
+                    "filename": "package-lock.json"
+                },
+                {
+                    "blank": 3,
+                    "code": 48,
+                    "comment": 0,
+                    "filename": "package.json"
+                },
+                {
+                    "filename": "public\\favicon.ico",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 0,
+                    "code": 20,
+                    "comment": 23,
+                    "filename": "public\\index.html"
+                },
+                {
+                    "filename": "public\\logo192.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "public\\logo512.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 0,
+                    "code": 25,
+                    "comment": 0,
+                    "filename": "public\\manifest.json"
+                },
+                {
+                    "blank": 0,
+                    "code": 3,
+                    "comment": 1,
+                    "filename": "public\\robots.txt"
+                },
+                {
+                    "blank": 15,
+                    "code": 21,
+                    "comment": 4,
+                    "filename": "README.md"
+                },
+                {
+                    "blank": 5,
+                    "code": 54,
+                    "comment": 0,
+                    "filename": "src\\App.js"
+                },
+                {
+                    "filename": "src\\assets\\cloud-upload-regular-240.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src\\assets\\file-blank-solid-240.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src\\assets\\file-css-solid-240.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src\\assets\\file-pdf-solid-240.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src\\assets\\file-png-solid-240.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 1,
+                    "code": 2,
+                    "comment": 0,
+                    "filename": "src\\assets\\index.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 5,
+                    "comment": 0,
+                    "filename": "src\\assets\\logo.svg"
+                },
+                {
+                    "blank": 7,
+                    "code": 32,
+                    "comment": 0,
+                    "filename": "src\\components\\containers\\style.js"
+                },
+                {
+                    "blank": 3,
+                    "code": 15,
+                    "comment": 0,
+                    "filename": "src\\components\\layout\\Layout.js"
+                },
+                {
+                    "blank": 3,
+                    "code": 11,
+                    "comment": 0,
+                    "filename": "src\\components\\layout\\style.js"
+                },
+                {
+                    "blank": 2,
+                    "code": 5,
+                    "comment": 0,
+                    "filename": "src\\components\\pages\\CourseMaterials.js"
+                },
+                {
+                    "blank": 2,
+                    "code": 5,
+                    "comment": 0,
+                    "filename": "src\\components\\pages\\Home.js"
+                },
+                {
+                    "blank": 12,
+                    "code": 89,
+                    "comment": 0,
+                    "filename": "src\\components\\pages\\Materials.js"
+                },
+                {
+                    "blank": 9,
+                    "code": 71,
+                    "comment": 0,
+                    "filename": "src\\components\\pages\\Session.js"
+                },
+                {
+                    "blank": 6,
+                    "code": 30,
+                    "comment": 0,
+                    "filename": "src\\components\\pages\\SignIn.js"
+                },
+                {
+                    "blank": 15,
+                    "code": 87,
+                    "comment": 0,
+                    "filename": "src\\components\\pages\\SubjectModule.js"
+                },
+                {
+                    "blank": 15,
+                    "code": 113,
+                    "comment": 0,
+                    "filename": "src\\components\\pages\\Tasks.js"
+                },
+                {
+                    "blank": 5,
+                    "code": 68,
+                    "comment": 0,
+                    "filename": "src\\components\\ui\\cards\\MaterialsCard.js"
+                },
+                {
+                    "blank": 5,
+                    "code": 77,
+                    "comment": 0,
+                    "filename": "src\\components\\ui\\cards\\SessionCard.js"
+                },
+                {
+                    "blank": 5,
+                    "code": 60,
+                    "comment": 0,
+                    "filename": "src\\components\\ui\\cards\\TaskCard.js"
+                },
+                {
+                    "blank": 1,
+                    "code": 10,
+                    "comment": 0,
+                    "filename": "src\\components\\ui\\drop-file-input\\config\\ImageConfig.js"
+                },
+                {
+                    "blank": 10,
+                    "code": 73,
+                    "comment": 0,
+                    "filename": "src\\components\\ui\\drop-file-input\\InputDocs.js"
+                },
+                {
+                    "blank": 17,
+                    "code": 78,
+                    "comment": 0,
+                    "filename": "src\\components\\ui\\drop-file-input\\style.js"
+                },
+                {
+                    "blank": 9,
+                    "code": 46,
+                    "comment": 0,
+                    "filename": "src\\components\\ui\\form\\AddDocForm.js"
+                },
+                {
+                    "blank": 10,
+                    "code": 150,
+                    "comment": 0,
+                    "filename": "src\\components\\ui\\form\\AddSessionForm.js"
+                },
+                {
+                    "blank": 11,
+                    "code": 117,
+                    "comment": 0,
+                    "filename": "src\\components\\ui\\form\\AddTaskForm.js"
+                },
+                {
+                    "blank": 5,
+                    "code": 92,
+                    "comment": 0,
+                    "filename": "src\\components\\ui\\form\\SignInForm.js"
+                },
+                {
+                    "blank": 7,
+                    "code": 123,
+                    "comment": 0,
+                    "filename": "src\\components\\ui\\navbar\\Navbar.js"
+                },
+                {
+                    "blank": 14,
+                    "code": 119,
+                    "comment": 0,
+                    "filename": "src\\components\\ui\\navbar\\style.js"
+                },
+                {
+                    "blank": 3,
+                    "code": 10,
+                    "comment": 0,
+                    "filename": "src\\components\\ui\\style\\uiStyles.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0,
+                    "filename": "src\\components\\utils\\consts.js"
+                },
+                {
+                    "blank": 2,
+                    "code": 14,
+                    "comment": 5,
+                    "filename": "src\\components\\utils\\firebase.js"
+                },
+                {
+                    "blank": 3,
+                    "code": 81,
+                    "comment": 0,
+                    "filename": "src\\hoc\\AppRouter.js"
+                },
+                {
+                    "blank": 19,
+                    "code": 72,
+                    "comment": 2,
+                    "filename": "src\\hoc\\AuthProvider.js"
+                },
+                {
+                    "blank": 6,
+                    "code": 12,
+                    "comment": 0,
+                    "filename": "src\\hoc\\AuthRequired.js"
+                },
+                {
+                    "blank": 2,
+                    "code": 5,
+                    "comment": 0,
+                    "filename": "src\\hook\\useAuth.js"
+                },
+                {
+                    "blank": 2,
+                    "code": 14,
+                    "comment": 3,
+                    "filename": "src\\index.js"
+                },
+                {
+                    "blank": 1,
+                    "code": 12,
+                    "comment": 0,
+                    "filename": "src\\reportWebVitals.js"
+                },
+                {
+                    "blank": 1,
+                    "code": 13,
+                    "comment": 0,
+                    "filename": "src\\styles\\glogalStyles.js"
+                },
+                {
+                    "blank": 2,
+                    "code": 6,
+                    "comment": 0,
+                    "filename": "src\\styles\\MuiThemeProvider.js"
+                },
+                {
+                    "blank": 2,
+                    "code": 41,
+                    "comment": 0,
+                    "filename": "src\\styles\\theme.js"
+                },
+                {
+                    "blank": 1,
+                    "code": 23,
+                    "comment": 0,
+                    "filename": "src\\styles\\variables.js"
+                }
+            ]
+        }
+    ]
+}
