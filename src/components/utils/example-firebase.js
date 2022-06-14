@@ -5,7 +5,7 @@ import { getStorage } from "firebase/storage";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
-// Your web app's Firebase configuration
+// ВНИМАНИЕ! Это пример конфигурационного файла Firebase.
 const firebaseConfig = {
   apiKey: "Your-api-key",
   authDomain: "Your-auth-domain.firebaseapp.com",
