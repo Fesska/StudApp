@@ -36,7 +36,11 @@ function Session(props) {
     );
     const data = await getDocs(sessionCollectionRef);
 
-    setSession(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+    setSession(
+      data.docs
+        .map((doc) => ({ ...doc.data(), id: doc.id }))
+        .sort((a, b) => (a.time.toDate() > b.time.toDate() ? 1 : -1))
+    );
   };
 
   useEffect(() => {

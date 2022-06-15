@@ -46,7 +46,7 @@ function SubjectModule(props) {
       setTasks(
         data.docs
           .map((doc) => ({ ...doc.data(), id: doc.id }))
-          .sort((a, b) => (a.title > b.title ? 1 : -1))
+          .sort((a, b) => (a.deadline.toDate() > b.deadline.toDate() ? 1 : -1))
       );
     };
 
