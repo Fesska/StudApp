@@ -3,6 +3,7 @@ import Helmet from "react-helmet";
 import { ThemeProvider } from "styled-components";
 import { AdapterMoment } from "@mui/x-date-pickers/AdapterMoment";
 import { LocalizationProvider } from "@mui/x-date-pickers";
+import "moment/locale/ru";
 
 import { GlobalStyle } from "./styles/glogalStyles";
 import {

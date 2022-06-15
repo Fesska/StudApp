@@ -1,23 +1,19 @@
 import React, { useEffect, useState } from "react";
 import { Button, Typography } from "@mui/material";
+import { useLocation, useNavigate } from "react-router-dom";
+import { collection, getDocs } from "firebase/firestore";
 
-import { SHeader } from "../ui/style/uiStyles";
 import { useAuth } from "../../hook/useAuth";
+import { SHeader } from "../ui/style/uiStyles";
+import UserProfileCard from "../ui/cards/UserProfileCard";
+import UserSubjectsCard from "../ui/cards/UserSubjectsCard";
 import {
   heading,
   homeGreetingNotSignedIn,
   homeGreetingSignedIn,
 } from "../utils/consts";
-import {
-  HomeContentContainer,
-  SFixedContainer,
-  SFlexContainer,
-} from "../containers/style";
-import UserProfileCard from "../ui/cards/UserProfileCard";
-import { useLocation, useNavigate } from "react-router-dom";
-import UserSubjectsCard from "../ui/cards/UserSubjectsCard";
-import { collection, getDocs } from "firebase/firestore";
 import { db } from "../utils/firebase";
+import { HomeContentContainer } from "../containers/style";
 
 function Home() {
   const [subjects, setSubjects] = useState([]);
@@ -55,7 +51,8 @@ function Home() {
     if (user) {
       getSubjects();
     }
-  }, []);
+    console.log("mounted");
+  }, [user]);
 
   return (
     <>

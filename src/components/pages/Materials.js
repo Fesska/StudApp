@@ -4,11 +4,11 @@ import { collection, getDocs } from "firebase/firestore";
 import { Typography, Button } from "@mui/material";
 import { useLocation, useNavigate } from "react-router-dom";
 
-import MaterialsCard from "../ui/cards/MaterialsCard";
-import { db, storage } from "../utils/firebase";
-import { SHeader } from "../ui/style/uiStyles";
-import { SessionCardContainer } from "../containers/style";
 import { useAuth } from "../../hook/useAuth";
+import { SessionCardContainer } from "../containers/style";
+import MaterialsCard from "../ui/cards/MaterialsCard";
+import { SHeader } from "../ui/style/uiStyles";
+import { db, storage } from "../utils/firebase";
 import { heading } from "../utils/consts";
 
 function Materials() {
@@ -60,8 +60,9 @@ function Materials() {
   };
 
   useEffect(() => {
-    getFirebaseData();
-
+    if (user) {
+      getFirebaseData();
+    }
     console.log("mounted");
   }, []);
 
@@ -70,30 +71,38 @@ function Materials() {
       <div style={{ display: `block`, width: `100%` }}>
         <SHeader>
           <Typography variant="h3">Материалы курса</Typography>
-          <Typography variant="h5">
-            {heading()}, {user.name}! Ознакомьтесь с материалами по предметам
-            ниже.
+          <Typography variant="h5" marginTop={4}>
+            {subjects.length !== 0
+              ? `${heading()}, ${
+                  user.name
+                }! Ознакомьтесь с материалами по предметам
+            ниже.`
+              : `${heading()}, ${
+                  user.name
+                }! На данный момент не добавлено ни одного предмета. Дополните информацию о предметах, чтобы обмениваться документами.`}
           </Typography>
         </SHeader>
-        <SessionCardContainer style={{ marginTop: `15px` }}>
-          {subjects.map((subject) => (
-            <div key={subject.id} style={{ height: `auto` }}>
-              <MaterialsCard subject={subject} items={setUpDocs(subject)} />
-              <Button
-                variant="outlined"
-                onClick={() => {
-                  handleAddDoc(subject.packageDocs);
-                }}
-                sx={{
-                  marginLeft: `5px`,
-                  marginTop: `5px`,
-                }}
-              >
-                Добавить документ
-              </Button>
-            </div>
-          ))}
-        </SessionCardContainer>
+        {subjects.length !== 0 ? (
+          <SessionCardContainer style={{ marginTop: `15px` }}>
+            {subjects.map((subject) => (
+              <div key={subject.id} style={{ height: `auto` }}>
+                <MaterialsCard subject={subject} items={setUpDocs(subject)} />
+                <Button
+                  variant="outlined"
+                  onClick={() => {
+                    handleAddDoc(subject.packageDocs);
+                  }}
+                  sx={{
+                    marginLeft: `5px`,
+                    marginTop: `5px`,
+                  }}
+                >
+                  Добавить документ
+                </Button>
+              </div>
+            ))}
+          </SessionCardContainer>
+        ) : null}
       </div>
     </>
   );

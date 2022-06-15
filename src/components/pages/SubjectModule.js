@@ -70,8 +70,10 @@ function SubjectModule(props) {
   };
 
   useEffect(() => {
-    getFirestoreData();
-    console.log(subject);
+    if (user) {
+      getFirestoreData();
+    }
+    console.log("mounted");
   }, []);
 
   return (
@@ -81,7 +83,11 @@ function SubjectModule(props) {
           <Typography variant="h5">
             Задачи по курсу: {subject?.title}
           </Typography>
-          <Typography>Всего заданий: {tasks.length} </Typography>
+          <Typography>
+            {tasks.length !== 0
+              ? "Всего заданий: " + tasks.length
+              : "Пока не добавлено ни одного задания."}{" "}
+          </Typography>
           <Button
             variant="outlined"
             color="primary"
@@ -93,9 +99,9 @@ function SubjectModule(props) {
         </SHeader>
         <SubjectContainer>
           <SFlexContainer style={{ marginTop: `15px` }}>
-            {tasks.map((task) => (
-              <TaskCard task={task} key={task.id} />
-            ))}
+            {tasks.length !== 0
+              ? tasks.map((task) => <TaskCard task={task} key={task.id} />)
+              : null}
           </SFlexContainer>
         </SubjectContainer>
       </div>

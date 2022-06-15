@@ -3,14 +3,12 @@ import { collection, getDocs } from "firebase/firestore";
 import { Button, Typography } from "@mui/material";
 import { useLocation, useNavigate } from "react-router-dom";
 
-import { db } from "../utils/firebase";
+import { useAuth } from "../../hook/useAuth";
+import { SessionCardContainer } from "../containers/style";
 import { SHeader } from "../ui/style/uiStyles";
 import SessionCard from "../ui/cards/SessionCard";
-import { SessionCardContainer } from "../containers/style";
-import { useAuth } from "../../hook/useAuth";
-import moment from "moment";
-import "moment/locale/ru";
 import { heading } from "../utils/consts";
+import { db } from "../utils/firebase";
 
 function Session(props) {
   const [session, setSession] = useState([]);
@@ -42,7 +40,9 @@ function Session(props) {
   };
 
   useEffect(() => {
-    getFirebaseData();
+    if (user) {
+      getFirebaseData();
+    }
     console.log("mounted ");
   }, []);
 
@@ -53,9 +53,11 @@ function Session(props) {
           <Typography variant="h3">
             Промежуточная аттестация (экзамены, зачеты)
           </Typography>
-          <Typography variant="h5">
-            {heading()}, {user.name}! Ниже представлено расписание и информация
-            о промежуточной аттестации в вашей группе.
+          <Typography variant="h5" marginTop={4}>
+            {heading()}, {user?.name}!{" "}
+            {session.length !== 0
+              ? "Ниже представлено расписание и информация о промежуточной аттестации в вашей группе."
+              : "Пока не добавлено ни одной контрольной точки."}
           </Typography>
           <Button
             variant="outlined"
@@ -66,13 +68,15 @@ function Session(props) {
             Добавить информацию о сессии
           </Button>
         </SHeader>
-        <SessionCardContainer style={{ marginTop: `15px` }}>
-          {session.map((exam) => (
-            <div key={exam.id} style={{ height: `auto` }}>
-              <SessionCard exam={exam} />
-            </div>
-          ))}
-        </SessionCardContainer>
+        {session.length !== 0 ? (
+          <SessionCardContainer style={{ marginTop: `15px` }}>
+            {session.map((exam) => (
+              <div key={exam.id} style={{ height: `auto` }}>
+                <SessionCard exam={exam} />
+              </div>
+            ))}
+          </SessionCardContainer>
+        ) : null}
       </div>
     </>
   );
