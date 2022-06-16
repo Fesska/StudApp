@@ -1,6 +1,12 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
-import { addDoc, collection, Timestamp } from "firebase/firestore";
+import {
+  addDoc,
+  collection,
+  doc,
+  Timestamp,
+  updateDoc,
+} from "firebase/firestore";
 import {
   Button,
   Card,
@@ -13,46 +19,80 @@ import { useLocation, useNavigate } from "react-router-dom";
 
 import { useAuth } from "../../../hook/useAuth";
 import { db } from "../../utils/firebase";
+import moment from "moment";
 
 function AddSessionForm(props) {
   const [desc, setDesc] = useState("");
-  const [title, setTitle] = useState();
-  const [date, setDate] = useState();
-  const [format, setFormat] = useState();
-  const [room, setRoom] = useState();
-  const [teacher, setTeacher] = useState();
+  const [title, setTitle] = useState("");
+  const [date, setDate] = useState(moment.now());
+  const [format, setFormat] = useState("");
+  const [room, setRoom] = useState("");
+  const [teacher, setTeacher] = useState("");
 
   const location = useLocation();
   const navigate = useNavigate();
   const { user } = useAuth();
 
   const fromPage = location.state?.from || "/";
+  const method = location.state?.method || "add";
+  const exam = location.state?.exam || null;
+
+  const updateData = async (sessionID) => {
+    const docRef = doc(db, "groups/" + user.group + "/session", sessionID);
+
+    await updateDoc(docRef, {
+      title: title,
+      format: format,
+      time: Timestamp.fromDate(date).toDate(),
+      teacher: teacher,
+      room: room,
+      description: desc,
+    });
+  };
+
+  const uploadData = async () => {
+    const sessionCollectionRef = collection(
+      db,
+      "groups/" + user.group + "/session"
+    );
+
+    await addDoc(sessionCollectionRef, {
+      title: title,
+      format: format,
+      time: Timestamp.fromDate(date).toDate(),
+      teacher: teacher,
+      room: room,
+      description: desc,
+    });
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
     if (title && date && format && room && teacher) {
-      const sessionCollectionRef = collection(
-        db,
-        "groups/" + user.group + "/session"
-      );
+      if (method === "add") {
+        uploadData();
+      } else if (method === "update") {
+        updateData(exam.id);
+      }
 
-      const uploadData = async () => {
-        await addDoc(sessionCollectionRef, {
-          title: title,
-          format: format,
-          time: Timestamp.fromDate(date).toDate(),
-          teacher: teacher,
-          room: room,
-          description: desc,
-        });
-        console.log({ title, desc, date, format, room, teacher });
-      };
-
-      uploadData();
       navigate(fromPage, { replace: true });
     }
   };
+
+  useEffect(() => {
+    if (exam) {
+      setDesc(exam?.description);
+      setTitle(exam?.title);
+      setDate(
+        new Date(exam?.time?.seconds * 1000 + exam?.time?.nanoseconds / 100000)
+      );
+      setFormat(exam?.format);
+      setRoom(exam?.room);
+      setTeacher(exam?.teacher);
+      console.log(location.state);
+    }
+  }, []);
 
   return (
     <>
@@ -63,7 +103,7 @@ function AddSessionForm(props) {
         >
           <CardContent>
             <Typography gutterBottom variant="h5">
-              Добавить данные
+              {method === "add" ? "Добавить данные" : "Редактировать данные"}
             </Typography>
             <Typography
               variant="body2"
@@ -82,6 +122,7 @@ function AddSessionForm(props) {
                     variant="outlined"
                     fullWidth
                     required
+                    value={title}
                     onChange={(e) => setTitle(e.target.value)}
                   />
                 </Grid>
@@ -92,6 +133,7 @@ function AddSessionForm(props) {
                     variant="outlined"
                     fullWidth
                     required
+                    value={format}
                     helperText={"Зачет, экзамен"}
                     onChange={(e) => setFormat(e.target.value)}
                   />
@@ -111,6 +153,7 @@ function AddSessionForm(props) {
                     placeholder="Иванов И.И."
                     label="Преподаватель"
                     variant="outlined"
+                    value={teacher}
                     fullWidth
                     required
                     onChange={(e) => setTeacher(e.target.value)}
@@ -121,6 +164,7 @@ function AddSessionForm(props) {
                     placeholder="Л205"
                     label="Аудитория"
                     variant="outlined"
+                    value={room}
                     fullWidth
                     required
                     helperText={"Номер аудитории или дистанционно"}
@@ -134,6 +178,7 @@ function AddSessionForm(props) {
                     rows={4}
                     placeholder="Дополнительная информация..."
                     variant="outlined"
+                    value={desc}
                     fullWidth
                     onChange={(e) => setDesc(e.target.value)}
                   />

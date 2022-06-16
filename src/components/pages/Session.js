@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { collection, getDocs } from "firebase/firestore";
+import { collection, deleteDoc, doc, getDocs } from "firebase/firestore";
 import { Button, Typography } from "@mui/material";
 import { useLocation, useNavigate } from "react-router-dom";
 
@@ -43,6 +43,34 @@ function Session(props) {
     );
   };
 
+  const handleDelete = async (examID) => {
+    if (user.rights !== "admin") {
+      alert("У вас недостаточно прав для удаления контрольных точек.");
+    } else {
+      await deleteDoc(doc(db, "groups/" + user.group + "/session/" + examID));
+      setSession(
+        session.filter((exam) => {
+          return exam.id !== examID;
+        })
+      );
+      console.log("deleted doc at: groups/" + user.group + "/session/");
+    }
+  };
+
+  const handleUpdate = (exam) => {
+    if (user.rights !== "admin") {
+      alert("У вас недостаточно прав для добавления новых задач.");
+    } else {
+      navigate(`${location.pathname}/add`, {
+        state: {
+          from: location,
+          method: "update",
+          exam: exam,
+        },
+      });
+    }
+  };
+
   useEffect(() => {
     if (user) {
       getFirebaseData();
@@ -76,7 +104,11 @@ function Session(props) {
           <SessionCardContainer style={{ marginTop: `15px` }}>
             {session.map((exam) => (
               <div key={exam.id} style={{ height: `auto` }}>
-                <SessionCard exam={exam} />
+                <SessionCard
+                  exam={exam}
+                  handleDelete={handleDelete}
+                  handleUpdate={handleUpdate}
+                />
               </div>
             ))}
           </SessionCardContainer>

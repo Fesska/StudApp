@@ -7,8 +7,13 @@ import {
   IconButton,
   styled,
   Typography,
+  Tooltip,
 } from "@mui/material";
-import { MdExpandMore } from "react-icons/md";
+import {
+  MdExpandMore,
+  MdOutlineDelete,
+  MdSystemUpdateAlt,
+} from "react-icons/md";
 import React from "react";
 import moment from "moment";
 
@@ -23,11 +28,21 @@ const ExpandMore = styled((props) => {
   }),
 }));
 
-function SessionCard({ exam }) {
+function SessionCard({ exam, handleDelete, handleUpdate }) {
   const [expanded, setExpanded] = React.useState(false);
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
+  };
+
+  const handleDeleteClick = () => {
+    const id = exam.id;
+    handleDelete(id);
+  };
+
+  const handleUpdateClick = () => {
+    const id = exam;
+    handleUpdate(id);
   };
 
   return (
@@ -44,6 +59,20 @@ function SessionCard({ exam }) {
     >
       <CardHeader
         title={exam.title}
+        action={
+          <>
+            <Tooltip title={"Удалить"}>
+              <IconButton onClick={handleDeleteClick}>
+                <MdOutlineDelete />
+              </IconButton>
+            </Tooltip>
+            <Tooltip title={"Редактировать"}>
+              <IconButton onClick={handleUpdateClick}>
+                <MdSystemUpdateAlt />
+              </IconButton>
+            </Tooltip>
+          </>
+        }
         subheader={moment(exam.time.toDate().toString())
           .locale("ru")
           .format("LL")}
